@@ -1,8 +1,5 @@
-Introduction To Ai Module
-Predicting prefferered music based on personality type
+IN3062 Introduction to Artificial Intelligence
 
-Data used:https://www.kaggle.com/tunguz/big-five-personality-test
+Testing classification models in the machine learning domain with the aim to predict a mobile phone's selling price given the phone's features as input.
 
-To add to the jupiter notebook add a folder called data to your forked version and extract the ziped data (that you dowload from the link above) into the data folder, the file location should be:
-...\data\IPIP-FFM-data-8Nov2018\data-final.csv
-
+Data source: https://www.kaggle.com/iabhishekofficial/mobile-price-classification
