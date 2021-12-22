@@ -16,20 +16,25 @@ pd.set_option('display.max_columns', None)
 train.head()
 test.head()
 
-# number of rows and columns
+# 2000 rows and 21 columns
 train.shape
-train.shape
+# 1000 rows and 21 columns
+test.shape
 
 # datasets info
 train.info()
 test.info()
 
+# more info
+train.describe()
+test.describe()
+
 # checking for null values
 train.isnull().any()
 test.isnull().any()
 
-
-train['price_range'].value_counts()
+# price_range column is well balanced
+train.price_range.value_counts()
 #sns.countplot('price_range',data=train)
 
 
