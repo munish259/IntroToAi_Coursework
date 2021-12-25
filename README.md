@@ -1,4 +1,4 @@
-IN3062 Introduction to Artificial Intelligence
+Introduction to Artificial Intelligence
 
 Testing classification models in the machine learning domain with the aim to predict a mobile phone's selling price given the phone's features as input.
 
