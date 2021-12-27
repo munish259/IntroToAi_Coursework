@@ -7,9 +7,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 from sklearn import metrics
-
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import plot_confusion_matrix
+
 
 # importing datasets
 #myFile = pd.read_csv('train.csv')
@@ -45,3 +45,7 @@ y_pred = linearModel.predict(X_test)
 
 # printing the classification report
 print(classification_report(y_test, y_pred))
+
+#plotting and printing confusion matrix
+plot_confusion_matrix(linearModel, X_test, y_test)  
+plt.show()
