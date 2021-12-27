@@ -11,16 +11,18 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import plot_confusion_matrix
 
 
+
 # importing datasets
 #myFile = pd.read_csv('train.csv')
+
 myFile2 = pd.read_csv('train.csv')
 #print(myFile.head())
 
 # datasets info
-print(myFile2.info())
+#print(myFile2.info())
 
 # more info
-print(myFile2.describe())
+#print(myFile2.describe())
 
 # checking for null values
 myFile2.isnull().any()
@@ -38,14 +40,25 @@ y = myFile2['price_range']
 # splitting the data into training and testing
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.25, random_state=42)
 
-# building the model
-linearModel = LogisticRegression()
-linearModel.fit(X_train, y_train)
-y_pred = linearModel.predict(X_test)
 
-# printing the classification report
-print(classification_report(y_test, y_pred))
 
-#plotting and printing confusion matrix
-plot_confusion_matrix(linearModel, X_test, y_test)  
-plt.show()
+#function for ease of access
+def linear():
+
+      # building the model
+      linearModel = LogisticRegression()
+      linearModel.fit(X_train, y_train)
+
+      # making our predicitons
+      y_pred = linearModel.predict(X_test)
+
+      # printing the classification report
+      print(classification_report(y_test, y_pred))
+
+      # plotting and printing confusion matrix
+      plot_confusion_matrix(linearModel, X_test, y_test)  
+      plt.show()
+
+
+linear()
+
