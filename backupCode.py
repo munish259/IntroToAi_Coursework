@@ -42,4 +42,3 @@ linearModel.fit(X_train, y_train)
 y_pred = linearModel.predict(X_test)
 print(classification_report(y_test, y_pred))
 
-
