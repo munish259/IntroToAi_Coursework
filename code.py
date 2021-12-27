@@ -67,19 +67,3 @@ y_train = train['price_range']
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
