@@ -65,44 +65,20 @@ def analyse_data():
       print("\nStatistics: \n")
 
       #display statistics 
-      get_stats()
+      get_stats(df)
 
       #visualise data so that it is clear what the data is showing
       df.hist(figsize=(20,20))
       plt.show()
       #sns.pairplot(df,hue='price_range')
 
-      
-def analyse_data():
-      '''Start of analysis of data'''
-      # Strip non-numerics
-      df = df.select_dtypes(include=['int', 'float'])
-
-      headers = list(df.columns.values)
-      fields = []
-      
-      #details on the data in numbers 
-      for col in df.columns:
-          print(col + '\n_____________')
-          print(df[col].value_counts())
-          print('_____________________________\n')
-
-      #display statistics 
-      get_stats()
-
-      #visualise data so that it is clear what the data is showing
-      df.hist(figsize=(20,20))
-      plt.show()
-      #sns.pairplot(df,hue='price_range')
-      
-      #heat map isa correlation matrix used to show the correlations between each field 
+        #heat map isa correlation matrix used to show the correlations between each field 
       plt.figure(figsize=(16,16))
       sns.heatmap(df.corr(), annot=True, fmt=".2f");
       '''End of analysis of data'''
-
       
       
-def get_stats():
+def get_stats(df):
     
       headers = list(df.columns.values)
       fields = []
@@ -125,9 +101,11 @@ def get_stats():
 
 #function for ease of access
 def logistic():
+    
+      print ("\nLogistic Regression:\n")
 
       # building the model
-      logisticModel = LogisticRegression()
+      logisticModel = LogisticRegression(max_iter = 1000)
       logisticModel.fit(X_train, y_train)
 
       # making our predicitons
@@ -148,7 +126,9 @@ def logistic():
 
 
 def decisionTree():
-
+        
+     
+      print("\nDecision Tree:\n")
 
       # building the model
       clf = DecisionTreeClassifier()
@@ -175,6 +155,8 @@ def decisionTree():
 
 
 def SVM():
+        
+      print("\nSVM:\n")
 
       # building the model
       regressor  = SVC(kernel='rbf', random_state = 1)
@@ -197,7 +179,8 @@ def SVM():
       
       
 def nb():
-  
+       
+      print("\nNaive Bayes:\n")
       # building the model
       nb = GaussianNB()
       nb.fit(X_train,y_train)
@@ -217,10 +200,8 @@ def nb():
 
       
 analyse_data()
-
-#analyse_data()
-#logistic()
-#decisionTree()
-#SVM()
-#nb()
+logistic()
+decisionTree()
+SVM()
+nb()
 
