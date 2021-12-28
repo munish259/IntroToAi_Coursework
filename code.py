@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt  
 from sklearn.model_selection import train_test_split 
 
-
+from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
@@ -115,9 +115,29 @@ def SVM():
       plt.show()
 
       #ref: https://analyticsindiamag.com/understanding-the-basics-of-svm-with-example-and-python-implementation/
+      
+def nb():
+
+      # building the model
+      nb = GaussianNB()
+      nb.fit(X_train,y_train)
+
+      # making predictions
+      y_pred = nb.predict(X_test)
+      
+      #prints accuracy using metrics
+      print("\n (metric) Accuracy: ", metrics.accuracy_score(y_test, y_pred), "\n")
+      
+      # printing the classification report 
+      print(classification_report(y_test,y_pred))
+
+      # plotting and printing confusion matrix
+      plot_confusion_matrix(nb, X_test,y_pred)
+      plt.show()
 
 
 
 #logistic()
 #decisionTree()
-SVM()
+#SVM()
+nb()
