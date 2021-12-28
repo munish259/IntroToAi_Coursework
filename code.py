@@ -5,10 +5,13 @@ import pandas as pd
 import matplotlib.pyplot as plt  
 from sklearn.model_selection import train_test_split 
 
+
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+
 
 from sklearn.metrics import classification_report
 from sklearn import metrics
@@ -74,7 +77,7 @@ def analyse_data():
 
         #heat map isa correlation matrix used to show the correlations between each field 
       plt.figure(figsize=(16,16))
-      sns.heatmap(df.corr(), annot=True, fmt=".2f");
+      sns.heatmap(df.corr(), annot=True, fmt=".2f")
       '''End of analysis of data'''
       
       
@@ -127,7 +130,7 @@ def logistic():
 
 def decisionTree():
         
-     
+
       print("\nDecision Tree:\n")
 
       # building the model
@@ -146,24 +149,23 @@ def decisionTree():
       # plotting and printing confusion matrix
       plot_confusion_matrix(clf, X_test, y_test)  
       plt.show()
-
       
       #reference: https://stackabuse.com/decision-trees-in-python-with-scikit-learn/
 
 
-#visualise decision tree in itself
 
+#visualise decision tree in itself
 
 def SVM():
         
       print("\nSVM:\n")
 
       # building the model
-      regressor  = SVC(kernel='rbf', random_state = 1)
-      regressor.fit(X_train,y_train)
+      sv  = SVC(kernel='rbf', random_state = 1)
+      sv.fit(X_train,y_train)
 
       #making our prediction
-      y_pred = regressor.predict(X_test)
+      y_pred = sv.predict(X_test)
 
       #prints accuracy using metrics
       print("\n (metric) Accuracy: ", metrics.accuracy_score(y_test, y_pred), "\n")
@@ -172,15 +174,17 @@ def SVM():
       print(classification_report(y_test, y_pred))
 
       # plotting and printing confusion matrix
-      plot_confusion_matrix(regressor, X_test, y_test)  
+      plot_confusion_matrix(sv, X_test, y_test)  
       plt.show()
 
       #ref: https://analyticsindiamag.com/understanding-the-basics-of-svm-with-example-and-python-implementation/
       
+
       
 def nb():
        
       print("\nNaive Bayes:\n")
+
       # building the model
       nb = GaussianNB()
       nb.fit(X_train,y_train)
@@ -198,10 +202,36 @@ def nb():
       plot_confusion_matrix(nb, X_test,y_pred)
       plt.show()
 
+
+
+def kNear():
+
+      print("\nK-neighbor:\n")
+
+      # building the model
+      neigh = KNeighborsClassifier(n_neighbors=3)
+      neigh.fit(X_train, y_train)
+
+      # making predictions
+      y_pred = neigh.predict(X_test)
+
+      #prints accuracy using metrics
+      print("\n (metric) Accuracy: ", metrics.accuracy_score(y_test, y_pred), "\n")
       
-analyse_data()
-logistic()
-decisionTree()
-SVM()
-nb()
+      # printing the classification report 
+      print(classification_report(y_test,y_pred))
+
+      # plotting and printing confusion matrix
+      plot_confusion_matrix(neigh, X_test,y_pred)
+      plt.show() 
+
+
+      
+#analyse_data()
+
+#logistic()             #70%  (rounded) 
+#decisionTree()         #79%  (rounded) 
+#SVM()                  #94%  (rounded) 
+#nb()                   #78%  (rounded) 
+#kNear()                #90%  (rounded)            
 
