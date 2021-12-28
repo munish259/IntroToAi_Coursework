@@ -10,7 +10,12 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 from sklearn.metrics import plot_confusion_matrix
 
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import export_text
 
+# importing datasets
+#myFile = pd.read_csv('train.csv')
 
 # importing datasets
 #myFile = pd.read_csv('train.csv')
@@ -40,7 +45,38 @@ y = myFile2['price_range']
 # splitting the data into training and testing
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.25, random_state=42)
 
+#function for ease of access
+def linear():
 
+      # building the model
+      linearModel = LogisticRegression()
+      linearModel.fit(X_train, y_train)
+
+# splitting the data into training and testing
+X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.25, random_state=42)
+
+      # making our predicitons
+      y_pred = linearModel.predict(X_test)
+
+      # printing the classification report
+      print(classification_report(y_test, y_pred))
+
+      # plotting and printing confusion matrix
+      plot_confusion_matrix(linearModel, X_test, y_test)  
+      plt.show()
+
+def decisionTree():
+
+      # building the model
+      clf = DecisionTreeClassifier()
+      clf = clf.fit(X_train,y_train)
+      y_pred = clf.predict(X_test)
+
+      #prints accuracy using metrics
+      print("\n Accuracy:",metrics.accuracy_score(y_test, y_pred))
+
+      # printing the classification report
+      print(classification_report(y_test, y_pred))
 
 #function for ease of access
 def linear():
@@ -58,7 +94,12 @@ def linear():
       # plotting and printing confusion matrix
       plot_confusion_matrix(linearModel, X_test, y_test)  
       plt.show()
+      
+      # plotting and printing confusion matrix
+      plot_confusion_matrix(clf, X_test, y_test)  
+      plt.show()
+      
 
 
-linear()
-
+#linear()
+#decisionTree()
